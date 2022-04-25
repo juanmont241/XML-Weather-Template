@@ -38,11 +38,12 @@ namespace XMLWeather
                 Day newDay = new Day();
 
                 //Fill day object with required data
+
                 reader.ReadToFollowing("time");
                 newDay.date = reader.GetAttribute("day");
 
                 reader.ReadToFollowing("symbol");
-                newDay.condition = reader.GetAttribute("name");
+                newDay.condition = reader.GetAttribute("number");
 
                 reader.ReadToFollowing("temperature");
                 newDay.tempLow = reader.GetAttribute("min");
@@ -55,8 +56,6 @@ namespace XMLWeather
                 {
                     days.Add(newDay);
                 }
-
-
 
             }
         }
@@ -72,8 +71,10 @@ namespace XMLWeather
 
             reader.ReadToFollowing("temperature");
             days[0].currentTemp = reader.GetAttribute("value");
+
             double tempDouble = Convert.ToDouble(days[0].currentTemp);
             int temp = Convert.ToInt32(Math.Round(tempDouble));
+      //      days[0].currentTemp = temp;
 
 
         }
